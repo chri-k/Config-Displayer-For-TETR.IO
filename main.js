@@ -385,8 +385,16 @@ function renderKeyboard({ ctx }, keys, keyData, controls) {
 
             const key = keys[index];
 
-            key.highlight(ctx, keyName, indexColor[i] ?? indexColor[2], theme.text, keyData.keyboardMargin, keyData.keyboardMargin);
+            key.labels.push(keyName);
+
+            key.highlight(ctx, indexColor[i] ?? indexColor[2], keyData.keyboardMargin, keyData.keyboardMargin);
         }
+    }
+
+    for (const key of keys)
+    {
+        key.drawLabels(ctx, theme.text, keyData.keyboardMargin, keyData.keyboardMargin);
+        key.labels = []; // Assumes labels are not set or used outside of this function
     }
 }
 
