@@ -21,7 +21,7 @@ export class Key {
 
     static styleLabel(ctx, color, size = Key.heightLabel) {
         ctx.fillStyle = color
-        ctx.font = "bold " + size + "px serif"
+        ctx.font = "bold " + size + "px monospace"
     }
 
     /**
