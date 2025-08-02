@@ -325,8 +325,15 @@ function resizeCanvas(data, keyData) {
         handlingSize = (fontsize + 2) * (count + 1) * (enableHandlingSettingsInput.checked == false ? 0 : 1);
     }
 
-    canvas.width = keyData.keyboardWidth * keyData.width + keyData.keyboardMargin * 2;
-    canvas.height = handlingSize + keyData.keyboardHeight * keyData.height + keyData.keyboardMargin * 2;
+    const w = keyData.keyboardWidth * keyData.width + keyData.keyboardMargin * 2;
+    const h = handlingSize + keyData.keyboardHeight * keyData.height +  keyData.keyboardMargin * 2;
+
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = w * dpr;
+    canvas.height = h * dpr;
+    canvas.style.width = w + "px";
+    canvas.style.height = h + "px";
+    canvas.getContext("2d").scale(dpr, dpr);
 
     const ctx = canvas.getContext("2d");
     ctx.fillStyle = currentTheme.canvas.bg;
